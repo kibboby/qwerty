@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "332970386270",
+    "project_id": "salescustom-55472",
+    "storage_bucket": "salescustom-55472.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332970386270:android:a6ce964875ffa40ef1a5cf",
+        "android_client_info": {
+          "package_name": "com.karunaSalesCustom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "332970386270-v4tnglav2nhgfutbiago2l9d9l29ego1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARFuMBC2feF3IaiKmAx4q-WFS0nEwiK_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "332970386270-v4tnglav2nhgfutbiago2l9d9l29ego1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
