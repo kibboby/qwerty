@@ -1,6 +1,6 @@
 import firebase from '@react-native-firebase/app';
 import * as React from 'react';
-import {StyleSheet,View} from "react-native" ;
+import { StyleSheet, View } from "react-native";
 import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -19,6 +19,12 @@ import editLeadsDetail from './CA/EditleadsDetail.js';
 import editProfileCA from './CA/editProfile_CA.js';
 import editSalespersonProfile from './CA/editProfileSalesperson.js';
 import history from './CA/history.js';
+
+import OverdueTask from './CA/OverdueTask.js';
+import CallTask from './CA/CallTask.js';
+import AppointmentTask from './CA/AppointmentTask.js';
+import OtherTask from './CA/OtherTask.js';
+
 import leadsTask from './CA/leadsTask.js';
 import leadsDetailLost from './CA/leadsDetailLost.js';
 import leadsDetailMain from './CA/leadsDetailsMain.js';
@@ -44,6 +50,7 @@ const ReportStack = createStackNavigator();
 const taskStack = createStackNavigator();
 const AccountStack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
+
 
 
 const leadsTopTab = () => {
@@ -123,7 +130,7 @@ const TaskandHistoryTab = () => {
 
       <TopTab.Screen
         name="task"
-        component={taskMainCA}
+        component={TaskMainStackNav}
         options={{
           tabBarLabel: ({ color, focused }) => (
             <View>
@@ -134,7 +141,7 @@ const TaskandHistoryTab = () => {
       />
       <TopTab.Screen
         name="history"
-        component={history}
+        component={TaskHistoryNav}
         options={{
           tabBarLabel: ({ color, focused }) => (
             <View>
@@ -147,10 +154,10 @@ const TaskandHistoryTab = () => {
   )
 }
 
-const OverallReportTab = () => {
+const TaskMainTab = () => {
   return (
     <TopTab.Navigator
-      initialRouteName="overall"
+      initialRouteName="taskMainTab"
       tabBarOptions={{
         activeTintColor: '#F8C018',
         inactiveTintColor: 'white',
@@ -172,8 +179,8 @@ const OverallReportTab = () => {
     >
 
       <TopTab.Screen
-        name="overall"
-        component={OverallReport}
+        name="Overdue"
+        component={OverdueTask}
         options={{
           tabBarLabel: ({ color, focused }) => (
             <View>
@@ -183,8 +190,30 @@ const OverallReportTab = () => {
         }}
       />
       <TopTab.Screen
-        name="salespersonReport"
-        component={salespersonReport}
+        name="Call"
+        component={CallTask}
+        options={{
+          tabBarLabel: ({ color, focused }) => (
+            <View>
+              <Icon3 name="circle" color={color} size={11} focused={focused} />
+            </View>
+          )
+        }}
+      />
+      <TopTab.Screen
+        name="Appointment"
+        component={AppointmentTask}
+        options={{
+          tabBarLabel: ({ color, focused }) => (
+            <View>
+              <Icon3 name="circle" color={color} size={11} focused={focused} />
+            </View>
+          )
+        }}
+      />
+      <TopTab.Screen
+        name="Others"
+        component={OtherTask}
         options={{
           tabBarLabel: ({ color, focused }) => (
             <View>
@@ -256,6 +285,56 @@ const leadsStatusTab = () => {
         }}
       />
 
+    </TopTab.Navigator>
+  )
+}
+
+const OverallReportTab = () => {
+  return (
+    <TopTab.Navigator
+      initialRouteName="overall"
+      tabBarOptions={{
+        activeTintColor: '#F8C018',
+        inactiveTintColor: 'white',
+        swipeEnabled: true,
+        style: {
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
+          position: 'absolute',
+          top: 45,
+          left: 110,
+          right: 0,
+          width: '50%',
+          alignSelf: 'center'
+        },
+        indicatorStyle: {
+          backgroundColor: 'transparent',
+        },
+      }}
+    >
+
+      <TopTab.Screen
+        name="overall"
+        component={OverallReport}
+        options={{
+          tabBarLabel: ({ color, focused }) => (
+            <View>
+              <Icon3 name="circle" color={color} size={11} focused={focused} />
+            </View>
+          )
+        }}
+      />
+      <TopTab.Screen
+        name="salespersonReport"
+        component={salespersonReport}
+        options={{
+          tabBarLabel: ({ color, focused }) => (
+            <View>
+              <Icon3 name="circle" color={color} size={11} focused={focused} />
+            </View>
+          )
+        }}
+      />
     </TopTab.Navigator>
   )
 }
@@ -339,7 +418,7 @@ const BottomTabNav = () => {
         />
         <BottomTab.Screen
           name="Task"
-          component={TaskStackNav}
+          component={TaskandHistoryTab}
           options={{
             tabBarLabel: 'Task',
             tabBarIcon: ({ color, focused }) => (
@@ -390,13 +469,27 @@ function dashboardStackNav() {
   )
 }
 
-function TaskStackNav() {
+function TaskHistoryNav() {
   return (
     <taskStack.Navigator
       screenOptions={{
         headerShown: false
       }}>
-      <taskStack.Screen name="TaskandHistoryTop" component={TaskandHistoryTab} />
+      <taskStack.Screen name="historyMain" component={history} />
+      <taskStack.Screen name="taskMainTab" component={TaskMainTab} />
+      <taskStack.Screen name="lead task" component={leadsTask} />
+    </taskStack.Navigator>
+  )
+}
+
+function TaskMainStackNav() {
+  return (
+    <taskStack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}>
+      <taskStack.Screen name="main" component={taskMainCA} />
+      <taskStack.Screen name="taskMainTab" component={TaskMainTab} />
       <taskStack.Screen name="lead task" component={leadsTask} />
     </taskStack.Navigator>
   )

@@ -1,4 +1,6 @@
+import firebase from '@react-native-firebase/app';
 import * as React from 'react';
+import { StyleSheet, View } from "react-native";
 import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -7,32 +9,39 @@ import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icon2 from 'react-native-vector-icons/Entypo';
 import Icon3 from 'react-native-vector-icons/FontAwesome';
+import Icon4 from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import accountCA from './android/CA/accountCA.js';
-import salespersonAccount from './android/CA/AccountSalesperson_CA.js';
-import changePassword from './android/CA/changePassword.js';
-import dashboardCA from './android/CA/dashboardCA.js';
-import editLeadsDetail from './android/CA/EditleadsDetail.js';
-import editProfileCA from './android/CA/editProfile_CA.js';
-import editSalespersonProfile from './android/CA/editProfileSalesperson.js';
-import history from './android/CA/history.js';
-import leadsTask from './android/CA/leadsTask.js';
-import leadsDetailLost from './android/CA/leadsDetailLost.js';
-import leadsDetailMain from './android/CA/leadsDetailsMain.js';
-import leadsDetailWon from './android/CA/leadsDetailWon.js';
-import lostLeadsReport from './android/CA/lostLeadsReport_CA.js';
-import notification from './android/CA/notificationPage.js'
-import notificationSettings from './android/CA/notificationSetting.js';
-import openLeads from './android/CA/openLeads_CA.js';
-import OverallReport from './android/CA/OverallReport_CA.js';
-import salespersonReport from './android/CA/salespersonReport.js';
-import performanceReportCA from './android/CA/performanceReport_CA.js';
-import salespersonRegister from './android/CA/registerSalesperson.js';
-import remark from './android/CA/remark.js';
-import settings from './android/CA/settings.js';
-import taskMainCA from './android/CA/taskMain_CA.js';
-import upcomingTaskDetail from './android/CA/upcomingTaskDetail.js';
-import wonLeadsReport from './android/CA/wonLeadsReport_CA.js';
+import accountCA from './accountCA.js';
+import salespersonAccount from './AccountSalesperson_CA.js';
+import changePassword from './changePassword.js';
+import dashboardCA from './dashboardCA.js';
+import editLeadsDetail from './EditleadsDetail.js';
+import editProfileCA from './editProfile_CA.js';
+import editSalespersonProfile from './editProfileSalesperson.js';
+import history from './history.js';
+
+import OverdueTask from './OverdueTask.js';
+import CallTask from './CallTask.js';
+import AppointmentTask from './AppointmentTask.js';
+import OtherTask from './OtherTask.js';
+
+import leadsTask from './leadsTask.js';
+import leadsDetailLost from './leadsDetailLost.js';
+import leadsDetailMain from './leadsDetailsMain.js';
+import leadsDetailWon from './leadsDetailWon.js';
+import lostLeadsReport from './lostLeadsReport_CA.js';
+import notification from './notificationPage.js'
+import notificationSettings from './notificationSetting.js';
+import openLeads from './openLeads_CA.js';
+import OverallReport from './OverallReport_CA.js';
+import salespersonReport from './salespersonReport.js';
+import performanceReportCA from './performanceReport_CA.js';
+import salespersonRegister from './registerSalesperson.js';
+import remark from './remark.js';
+import settings from './settings.js';
+import taskMainCA from './taskMain_CA.js';
+import upcomingTaskDetail from './upcomingTaskDetail.js';
+import wonLeadsReport from './wonLeadsReport_CA.js';
 
 
 const BottomTab = createBottomTabNavigator();
@@ -41,6 +50,27 @@ const ReportStack = createStackNavigator();
 const taskStack = createStackNavigator();
 const AccountStack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
+
+
+export const LoginNavigator= () =>{
+ 
+  return(
+    <Tab.Navigator
+    initialRouteName="Login"
+    tabBarOptions={{
+      activeTintColor:orange,
+      style: { backgroundColor: 'black' }
+    }}
+  >
+    <Tab.Screen
+      name="Login"
+      component={LoginStackNav}
+      options={{tabBarVisible:false}}
+    />
+  </Tab.Navigator>
+  )
+
+}
 
 
 const leadsTopTab = () => {
@@ -52,17 +82,17 @@ const leadsTopTab = () => {
         inactiveTintColor: 'white',
         swipeEnabled: true,
         style: {
-          backgroundColor: 'black',
-          borderColor: 'black',
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
           position: 'absolute',
           top: 45,
-          left: 145,
+          left: 110,
           right: 0,
           width: '50%',
           alignSelf: 'center'
         },
         indicatorStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: 'transparent',
         },
       }}
     >
@@ -103,24 +133,24 @@ const TaskandHistoryTab = () => {
         inactiveTintColor: 'white',
         swipeEnabled: true,
         style: {
-          backgroundColor: 'black',
-          borderColor: 'black',
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
           position: 'absolute',
           top: 45,
-          left: 145,
+          left: 110,
           right: 0,
           width: '50%',
           alignSelf: 'center'
         },
         indicatorStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: 'transparent',
         },
       }}
     >
 
       <TopTab.Screen
         name="task"
-        component={taskMainCA}
+        component={TaskMainStackNav}
         options={{
           tabBarLabel: ({ color, focused }) => (
             <View>
@@ -131,7 +161,7 @@ const TaskandHistoryTab = () => {
       />
       <TopTab.Screen
         name="history"
-        component={history}
+        component={TaskHistoryNav}
         options={{
           tabBarLabel: ({ color, focused }) => (
             <View>
@@ -153,17 +183,17 @@ const OverallReportTab = () => {
         inactiveTintColor: 'white',
         swipeEnabled: true,
         style: {
-          backgroundColor: 'black',
-          borderColor: 'black',
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
           position: 'absolute',
           top: 45,
-          left: 145,
+          left: 110,
           right: 0,
           width: '50%',
           alignSelf: 'center'
         },
         indicatorStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: 'transparent',
         },
       }}
     >
@@ -203,8 +233,8 @@ const leadsStatusTab = () => {
         inactiveTintColor: 'white',
         swipeEnabled: true,
         style: {
-          backgroundColor: 'black',
-          borderColor: 'black',
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
           position: 'absolute',
           top: 45,
           left: 110,
@@ -213,7 +243,7 @@ const leadsStatusTab = () => {
           alignSelf: 'center'
         },
         indicatorStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: 'transparent',
         },
       }}
     >
@@ -328,19 +358,19 @@ const BottomTabNav = () => {
           name="Home"
           component={dashboardStackNav}
           options={{
-            tabBarLabel: 'Report',
+            tabBarLabel: 'Home',
             tabBarIcon: ({ color, focused }) => (
-              <Icon name="home" color={color} size={26} focused={focused} />
+              <Icon4 name="home" color={color} size={26} focused={focused} />
             ),
           }}
         />
         <BottomTab.Screen
           name="Task"
-          component={TaskStackNav}
+          component={TaskandHistoryTab}
           options={{
-            tabBarLabel: 'Report',
+            tabBarLabel: 'Task',
             tabBarIcon: ({ color, focused }) => (
-              <Icon3 name="task" color={color} size={26} focused={focused} />
+              <Icon4 name="briefcase" color={color} size={26} focused={focused} />
             ),
           }}
         />
@@ -351,7 +381,7 @@ const BottomTabNav = () => {
           options={{
             tabBarLabel: 'Report',
             tabBarIcon: ({ color, focused }) => (
-              <Icon name="piechart" color={color} size={26} focused={focused} />
+              <Icon4 name="chart-pie" color={color} size={26} focused={focused} />
             ),
           }}
         />
@@ -362,7 +392,7 @@ const BottomTabNav = () => {
           options={{
             tabBarLabel: 'Account',
             tabBarIcon: ({ color, focused }) => (
-              <Icon2 name="user" color={color} size={26} focused={focused} />
+              <Icon4 name="account" color={color} size={26} focused={focused} />
             ),
           }}
         />
@@ -387,13 +417,32 @@ function dashboardStackNav() {
   )
 }
 
-function TaskStackNav() {
+function TaskHistoryNav() {
   return (
     <taskStack.Navigator
       screenOptions={{
         headerShown: false
       }}>
-      <taskStack.Screen name="TaskandHistoryTop" component={TaskandHistoryTab} />
+      <taskStack.Screen name="historyMain" component={history} />
+      <taskStack.Screen name="Call" component={CallTask} />
+      <taskStack.Screen name="Appointment" component={AppointmentTask} />
+      <taskStack.Screen name="Others" component={OtherTask} />
+      <taskStack.Screen name="lead task" component={leadsTask} />
+    </taskStack.Navigator>
+  )
+}
+
+function TaskMainStackNav() {
+  return (
+    <taskStack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}>
+      <taskStack.Screen name="main" component={taskMainCA} />
+      <taskStack.Screen name="Overdue" component={OverdueTask} />
+      <taskStack.Screen name="Call" component={CallTask} />
+      <taskStack.Screen name="Appointment" component={AppointmentTask} />
+      <taskStack.Screen name="Others" component={OtherTask} />
       <taskStack.Screen name="lead task" component={leadsTask} />
     </taskStack.Navigator>
   )

@@ -6,7 +6,7 @@ export const greenDClr = "#067d5b";
 export const redDClr = "#630e0e";
 export const blueDClr = "#27708a";
 export const white="#fff"
-
+export const orange="#F8C018"
 const myheight=100;
 
 

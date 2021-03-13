@@ -3,31 +3,22 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import React, {useEffect, useState, Component} from 'react';
 import { StyleSheet, Text, View, TextInput, Button ,TouchableOpacity, ImageBackground,Image} from 'react-native';
 
-export default function App() {
-
-  const pressTaskMainPage=()=>{
-    alert('nav to TaskMainPage .js')
-  };
-
-
-  const pressHistory=()=>{
-    alert('nav to HistoryPage .js')
-  };
+export default function App({navigation}) {
 
   const pressAlert=()=>{
-    alert('nav to alert page')
+    navigation.navigate('taskMainTab',{screen: "Overdue"});
   };
 
   const pressCall=()=>{
-    alert('nav to call page')
+    navigation.navigate('taskMainTab',{screen: "Call"});
   };
 
   const pressAppoinment=()=>{
-    alert('nav to appointment page')
+    navigation.navigate('taskMainTab',{screen: "Appointment"});
   };
 
   const pressOthers=()=>{
-    alert('nav to other page')
+    navigation.navigate('taskMainTab',{screen: "Others"});
   };
 
   return (
@@ -140,7 +131,7 @@ const styles = StyleSheet.create({
 
   iconButtonBorder:{
     borderWidth:2,
-    borderColor:"grey",
+    borderColor:"#F8C018",
     borderRadius:10,
     padding:"10%",
     //textAlign:"center",
