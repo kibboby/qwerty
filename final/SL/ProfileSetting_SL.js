@@ -136,7 +136,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ff8c00',
+    backgroundColor: '#ffff',
     padding: "10%",
   },
 
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    backgroundColor: "white",
+    backgroundColor: "lightgrey",
     padding: 10,
     borderRadius: 5,
     marginBottom: 20,

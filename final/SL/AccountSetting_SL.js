@@ -90,8 +90,7 @@ export default class Touchables extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#ff8c00',
+    backgroundColor: '#ffff',
     alignItems: 'center',
     justifyContent: 'center',
     padding: "10%",
