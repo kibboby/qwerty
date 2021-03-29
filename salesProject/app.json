@@ -1,0 +1,12 @@
+{
+  "name": "salesProject",
+  "displayName": "salesProject",
+  "expo": {
+    "name": "salesProject",
+    "slug": "salesProject",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
